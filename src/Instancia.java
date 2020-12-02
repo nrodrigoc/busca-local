@@ -1,9 +1,6 @@
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Instancia {
 
@@ -37,16 +34,28 @@ public class Instancia {
             lines.remove(1);
 
             n_de_pedidos = Integer.parseInt(lines.get(0));
+            lines.remove(lines.get(0));
 
             // Cria a matriz
-            pedido_requisito = new Integer[n_de_pedidos][4];
+            pedido_requisito = new Integer[n_de_pedidos][5];
+            System.out.println(this.pedido_requisito.length);
 
             System.out.println("N de pedidos: " + n_de_pedidos);
 
+            int conti = 0;
+            int contj = 0;
 
-//            for (String line : lines ) {
-//                System.out.println(line);
-//            }
+            //Transforma em matriz
+            for (String line : lines) {
+                String [] list = line.split(" ");
+
+                for( String l : list){
+                    this.pedido_requisito[conti][contj] = Integer.parseInt(l);
+                    contj++;
+                }
+                conti++;
+                contj = 0;
+            }
 
 
             br.close();
@@ -55,6 +64,12 @@ public class Instancia {
             System.out.println("\nEnter a valid filename!\n");
             e.printStackTrace();
         }
-
     }
+
+    //Get da matriz
+    public Integer[][] getMatriz(){
+        return this.pedido_requisito;
+    }
+
+
 }
