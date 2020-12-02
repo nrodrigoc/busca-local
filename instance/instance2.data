@@ -1,0 +1,11 @@
+# Numero de pedidos
+7
+
+# ID do pedido | Data minima de inicio | Duracao | Data de entrega | Multa por atraso
+1 7 3 18 3 
+2 9 3 12 4 
+3 3 4 18 1 
+4 3 6 22 5 
+5 2 5 20 3 
+6 3 6 10 2 
+7 0 4 24 3 
