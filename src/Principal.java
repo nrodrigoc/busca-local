@@ -10,6 +10,12 @@ public class Principal {
 
         Instancia instancia = new Instancia(filename);
 
+        Integer [][] matriz = instancia.getMatriz();
+
+        Construtivo construtivo = new Construtivo(matriz);
+
+        construtivo.initialiaze();
+
     }
 
 }
