@@ -30,8 +30,8 @@ public class Construtivo {
             for(Integer[] i : copia){
                 System.out.println("id atual : "+i[0]);
                 if(i[1] - contDias <= 0){
-                    double k = (i[4] + i[2]);
-                    double d = (i[3] - i[2]);
+                    double k = (i[4]);
+                    double d = (i[3]);
                     double calcPriority = k /d ;
                     System.out.println("Prioridade: "+calcPriority);
                     System.out.println("Atual Prioridade: "+priority);
@@ -70,7 +70,6 @@ public class Construtivo {
             if(i[2]>0){
                 return true;
             }
-
         }
         return false;
     }
