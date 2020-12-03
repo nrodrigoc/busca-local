@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 public class Instancia {
 
     //Colunas
-    //private final Integer ID_PEDIDO = 0;
-    private final Integer DATA_MINIMA = 0;
-    private final Integer DURACAO = 1;
-    private final Integer DATA_ENTREGA = 2;
-    private final Integer MULTA_ATRASO = 3;
+    public static final Integer ID_PEDIDO = 0;
+    public static final Integer DATA_MINIMA = 1;
+    public static final Integer DURACAO = 2;
+    public static final Integer DATA_ENTREGA = 3;
+    public static final Integer MULTA_ATRASO = 4;
 
     // Primeira dimensão: id do pedido - 1
-    // Segunda dimensão: tamanho 4, 1 para cada requisito ( O ID do PEDIDO fica implícito na quantidade de linhas)
+    // Segunda dimensão: tamanho 5, 1 para cada requisito
     private Integer[][] pedido_requisito;
 
     public Instancia(String filename) {
