@@ -52,7 +52,6 @@ public class Construtivo {
         // Loop que continua enquanto houverem pedidos ainda não precessados
         while (nDeProcessados < matriz.length) {
 
-            System.out.println("DIA: " + contDias + " | PRODUZINDO: " + (id_processando+1));
 
             Iterator<Integer> iterator = pendentes.iterator();
             while (iterator.hasNext()) {
@@ -83,6 +82,8 @@ public class Construtivo {
                 }
             }
 
+            System.out.println("DIA: " + contDias + " | PRODUZINDO: " + (id_processando+1));
+
             if(id_processando != -1) {
                 copia[id_processando][Instancia.DURACAO]--;
             }
@@ -106,6 +107,7 @@ public class Construtivo {
                 prontos.remove(id_processando);
                 nDeProcessados++;
                 id_processando = -1;
+                System.out.println();
             }
 
 

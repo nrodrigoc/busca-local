@@ -3,7 +3,7 @@ public class Principal {
     public static void main(String[] args) {
         System.out.println("Bom dia");
 
-        String filename = "instance4.data";
+        String filename = "instance2.data";
 
         Instancia instancia = new Instancia(filename);
 
