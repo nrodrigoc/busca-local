@@ -90,7 +90,7 @@ public class Construtivo {
             contDias++;
 
             // Libera a próxima avaliação de pedidos
-            if(copia[id_processando][Instancia.DURACAO] == 0) {
+            if(emProducao && copia[id_processando][Instancia.DURACAO] == 0) {
                 //Calcula a multa
                 if (contDias - copia[id_processando][Instancia.DATA_ENTREGA] > 0){
                     Integer diasAtrasados = contDias - copia[id_processando][Instancia.DATA_ENTREGA];
@@ -168,9 +168,9 @@ public class Construtivo {
 
         System.out.println("TOTAL DE MULTAS: "+totalMulta);
 
-        System.out.println("VISITAS:");
+        System.out.print("VISITAS: |");
         for ( Integer visita : visitas ){
-            System.out.println(visita);
+            System.out.print(" " + visita + " |");
         }
     }
 

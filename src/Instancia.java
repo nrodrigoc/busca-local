@@ -38,7 +38,6 @@ public class Instancia {
 
             // Cria a matriz
             pedido_requisito = new Integer[n_de_pedidos][5];
-            System.out.println(this.pedido_requisito.length);
 
             System.out.println("N de pedidos: " + n_de_pedidos);
 
