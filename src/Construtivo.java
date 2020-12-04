@@ -28,15 +28,14 @@ public class Construtivo {
         int contDias = 0;
         int totalMulta = 0;
 
-
+        // Número de pedidos já processados
         int nDeProcessados = 0;
-        //Array Para saber quem ja pode iniciar
-        Integer [] arrayIdsStart = new Integer[this.matriz.length];
 
         System.out.println("--------------------------------------");
         System.out.println("INICIANDO ALGORITIMO GULOSO");
         System.out.println("--------------------------------------");
 
+        // Id do pedido que está sendo processado no momento
         Integer id_processando = -1;
 
         //Pedidos ainda nao processados
@@ -109,61 +108,8 @@ public class Construtivo {
                 id_processando = -1;
                 System.out.println();
             }
-
-
         }
 
-//        while (this.confereDuracao(copia)){
-//
-//            int id = 0;
-//            double priority = 0;
-//
-//            for(Integer[] i : copia){
-//
-////                System.out.println("id atual : " + i[Instancia.ID_PEDIDO]);
-//
-//                if(i[Instancia.DATA_MINIMA] - contDias <= 0){
-//                    double k = (i[Instancia.MULTA_ATRASO]);
-//                    double d = (i[Instancia.DATA_ENTREGA] - i[Instancia.DATA_MINIMA]);
-//                    double calcPriority = k / d ;
-//                    System.out.println("Prioridade: "+calcPriority);
-//                    System.out.println("Atual Prioridade: "+priority);
-//
-//                   if(calcPriority > priority && i[Instancia.DURACAO] > 0){
-//                       priority = calcPriority;
-//                       if(!emProducao) {
-//                           id = i[Instancia.ID_PEDIDO];
-//                           emProducao = true;
-//                       }
-////                       visitas[contadorr] = id;
-////                       contadorr++;
-//                   }
-//                }
-//
-//                // Adiciona o valor da multa do pedido para cada dia ultrapassado
-//                if(contDias > i[Instancia.DATA_ENTREGA] && i[Instancia.DURACAO] > 0){
-//                    totalMulta += i[Instancia.MULTA_ATRASO];
-//                    System.out.println("Pagando multa de "+ i[Instancia.MULTA_ATRASO] +
-//                            " pelo id "+ i[Instancia.ID_PEDIDO]+ " no dia "+contDias );
-//                    System.out.println("Total de multa no valor: "+totalMulta);
-//                }
-//
-//            }
-//            contDias++;
-//
-////            System.out.println("Escolhido id: "+ id +" com prioridade de "+ priority);
-//            System.out.println("Dia: "+contDias);
-//
-//            if(copia[id-1][Instancia.DURACAO] > 0){
-//                copia[id-1][Instancia.DURACAO] -= 1 ;
-//            }
-//            if (copia[id-1][Instancia.DURACAO] == 0) {
-//                visitas.add(id);
-//                contadorr++;
-//                emProducao = false;
-//            }
-//
-//        }
         System.out.println("--------------------------------------");
         System.out.println("FIM ALGORITIMO GULOSO");
         System.out.println("--------------------------------------");
