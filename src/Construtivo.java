@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,10 @@ public class Construtivo {
 
     private Integer[][] matriz;
 
+    public Integer[][] getMatriz() {
+        return matriz;
+    }
+
     private List<Integer> visitas;
 
     // True se um pedido já estiver em produção
@@ -22,9 +27,9 @@ public class Construtivo {
         this.matriz = matriz;
     }
 
-    public void initialiaze(){
+    public int initialiaze(){
 
-        Integer [][] copia = matriz;
+        Integer [][] copia = this.clone();
         int contDias = 0;
         int totalMulta = 0;
 
@@ -113,57 +118,6 @@ public class Construtivo {
 
         }
 
-//        while (this.confereDuracao(copia)){
-//
-//            int id = 0;
-//            double priority = 0;
-//
-//            for(Integer[] i : copia){
-//
-////                System.out.println("id atual : " + i[Instancia.ID_PEDIDO]);
-//
-//                if(i[Instancia.DATA_MINIMA] - contDias <= 0){
-//                    double k = (i[Instancia.MULTA_ATRASO]);
-//                    double d = (i[Instancia.DATA_ENTREGA] - i[Instancia.DATA_MINIMA]);
-//                    double calcPriority = k / d ;
-//                    System.out.println("Prioridade: "+calcPriority);
-//                    System.out.println("Atual Prioridade: "+priority);
-//
-//                   if(calcPriority > priority && i[Instancia.DURACAO] > 0){
-//                       priority = calcPriority;
-//                       if(!emProducao) {
-//                           id = i[Instancia.ID_PEDIDO];
-//                           emProducao = true;
-//                       }
-////                       visitas[contadorr] = id;
-////                       contadorr++;
-//                   }
-//                }
-//
-//                // Adiciona o valor da multa do pedido para cada dia ultrapassado
-//                if(contDias > i[Instancia.DATA_ENTREGA] && i[Instancia.DURACAO] > 0){
-//                    totalMulta += i[Instancia.MULTA_ATRASO];
-//                    System.out.println("Pagando multa de "+ i[Instancia.MULTA_ATRASO] +
-//                            " pelo id "+ i[Instancia.ID_PEDIDO]+ " no dia "+contDias );
-//                    System.out.println("Total de multa no valor: "+totalMulta);
-//                }
-//
-//            }
-//            contDias++;
-//
-////            System.out.println("Escolhido id: "+ id +" com prioridade de "+ priority);
-//            System.out.println("Dia: "+contDias);
-//
-//            if(copia[id-1][Instancia.DURACAO] > 0){
-//                copia[id-1][Instancia.DURACAO] -= 1 ;
-//            }
-//            if (copia[id-1][Instancia.DURACAO] == 0) {
-//                visitas.add(id);
-//                contadorr++;
-//                emProducao = false;
-//            }
-//
-//        }
         System.out.println("--------------------------------------");
         System.out.println("FIM ALGORITIMO GULOSO");
         System.out.println("--------------------------------------");
@@ -174,16 +128,27 @@ public class Construtivo {
         for ( Integer visita : visitas ){
             System.out.print(" " + visita + " |");
         }
+        return totalMulta;
     }
 
-    private boolean confereDuracao(Integer [][] data){
-        for(Integer[] i: data){
-            if(i[Instancia.DURACAO] > 0){
-                return true;
+
+    public List<Integer> getResult(){
+        return this.visitas;
+    }
+
+    public int calculaMulta(List<Integer> ordem){
+        int dias = 0;
+        int multa = 0;
+
+        for(Integer i: ordem){
+            dias += this.matriz[i-1][Instancia.DURACAO];
+            if(dias > this.matriz[i-1][Instancia.DATA_ENTREGA]){
+                multa += (this.matriz[i-1][Instancia.MULTA_ATRASO] * (dias - this.matriz[i-1][Instancia.DATA_ENTREGA]));
             }
         }
-        return false;
+        return multa;
     }
+
 
 
     /**
@@ -192,6 +157,11 @@ public class Construtivo {
      */
     public List<Integer> getVisitas() {
         return visitas;
+    }
+
+    public Integer[][] clone(){
+        Integer [][] copy = Arrays.stream(this.matriz).map(Integer[]::clone).toArray(Integer[][]::new);
+        return copy;
     }
 
 }

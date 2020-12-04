@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Principal {
 
     public static void main(String[] args) {
@@ -11,7 +13,16 @@ public class Principal {
 
         Construtivo construtivo = new Construtivo(matriz);
 
-        construtivo.initialiaze();
+        //construtivo.initialiaze();
+
+        List<Integer> result = construtivo.getResult();
+
+        //int multa = construtivo.calculaMulta(result);
+
+        //System.out.println("\nVerificação da multa: "+multa);
+
+        EstruturasVizinhança estruturasVizinhança = new EstruturasVizinhança(construtivo);
+        estruturasVizinhança.busca();
 
     }
 
