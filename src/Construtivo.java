@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,10 @@ public class Construtivo {
 
     private Integer[][] matriz;
 
+    public Integer[][] getMatriz() {
+        return matriz;
+    }
+
     private List<Integer> visitas;
 
     // True se um pedido já estiver em produção
@@ -22,9 +27,9 @@ public class Construtivo {
         this.matriz = matriz;
     }
 
-    public void initialiaze(){
+    public int initialiaze(){
 
-        Integer [][] copia = matriz;
+        Integer [][] copia = this.clone();
         int contDias = 0;
         int totalMulta = 0;
 
@@ -120,16 +125,27 @@ public class Construtivo {
         for ( Integer visita : visitas ){
             System.out.print(" " + visita + " |");
         }
+        return totalMulta;
     }
 
-    private boolean confereDuracao(Integer [][] data){
-        for(Integer[] i: data){
-            if(i[Instancia.DURACAO] > 0){
-                return true;
+
+    public List<Integer> getResult(){
+        return this.visitas;
+    }
+
+    public int calculaMulta(List<Integer> ordem){
+        int dias = 0;
+        int multa = 0;
+
+        for(Integer i: ordem){
+            dias += this.matriz[i-1][Instancia.DURACAO];
+            if(dias > this.matriz[i-1][Instancia.DATA_ENTREGA]){
+                multa += (this.matriz[i-1][Instancia.MULTA_ATRASO] * (dias - this.matriz[i-1][Instancia.DATA_ENTREGA]));
             }
         }
-        return false;
+        return multa;
     }
+
 
 
     /**
@@ -138,6 +154,11 @@ public class Construtivo {
      */
     public List<Integer> getVisitas() {
         return visitas;
+    }
+
+    public Integer[][] clone(){
+        Integer [][] copy = Arrays.stream(this.matriz).map(Integer[]::clone).toArray(Integer[][]::new);
+        return copy;
     }
 
 }
