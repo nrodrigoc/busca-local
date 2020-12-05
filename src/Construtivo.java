@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- *
+ * Algoritmo construtivo para iniciar a busca local
  */
 public class Construtivo {
 
@@ -17,7 +17,6 @@ public class Construtivo {
     private int totalMulta;
 
     // True se um pedido já estiver em produção
-
     private Boolean emProducao;
 
     public Construtivo(Integer[][] matriz) {
