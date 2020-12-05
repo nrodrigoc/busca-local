@@ -12,26 +12,25 @@ public class Construtivo {
 
     private Integer[][] matriz;
 
-    public Integer[][] getMatriz() {
-        return matriz;
-    }
-
     private List<Integer> visitas;
 
+    private int totalMulta;
+
     // True se um pedido já estiver em produção
+
     private Boolean emProducao;
 
     public Construtivo(Integer[][] matriz) {
         this.emProducao = false;
         this.visitas = new ArrayList<>();
         this.matriz = matriz;
+        this.totalMulta = 0;
     }
 
     public int initialiaze(){
 
         Integer [][] copia = this.clone();
         int contDias = 0;
-        int totalMulta = 0;
 
         // Número de pedidos já processados
         int nDeProcessados = 0;
@@ -128,24 +127,38 @@ public class Construtivo {
         return totalMulta;
     }
 
-
-    public List<Integer> getResult(){
-        return this.visitas;
-    }
-
     public int calculaMulta(List<Integer> ordem){
         int dias = 0;
         int multa = 0;
 
-        for(Integer i: ordem){
-            dias += this.matriz[i-1][Instancia.DURACAO];
-            if(dias > this.matriz[i-1][Instancia.DATA_ENTREGA]){
-                multa += (this.matriz[i-1][Instancia.MULTA_ATRASO] * (dias - this.matriz[i-1][Instancia.DATA_ENTREGA]));
+        // Id o pedido que está sendo processado
+
+        int processados = 0;
+        // Indice do pedido processado na matriz
+        int atual = ordem.get(processados) - 1;
+        while (processados < ordem.size() -1) {
+
+            //Verifica se a data mínima de inicio foi atingida
+            if(dias - matriz[atual][Instancia.DATA_MINIMA] >= 0) {
+                dias += matriz[atual][Instancia.DURACAO];
+                processados++;
+                atual = ordem.get(processados) - 1;
+
+                int diasAtrasados = matriz[atual][Instancia.DURACAO] + dias - matriz[atual][Instancia.DATA_ENTREGA];
+
+                // Se houver atraso, soma à multa
+                if(diasAtrasados >= 0) {
+                    multa += diasAtrasados * matriz[atual][Instancia.MULTA_ATRASO];
+                }
+
+                continue;
             }
+
+            dias++;
         }
+
         return multa;
     }
-
 
 
     /**
@@ -159,6 +172,10 @@ public class Construtivo {
     public Integer[][] clone(){
         Integer [][] copy = Arrays.stream(this.matriz).map(Integer[]::clone).toArray(Integer[][]::new);
         return copy;
+    }
+
+    public int getTotalMulta() {
+        return totalMulta;
     }
 
 }

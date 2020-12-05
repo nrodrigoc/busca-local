@@ -5,21 +5,16 @@ public class Principal {
     public static void main(String[] args) {
         System.out.println("Bom dia");
 
-        String filename = "instance1.data";
+        String filename = "instance4.data";
 
         Instancia instancia = new Instancia(filename);
 
         Integer [][] matriz = instancia.getMatriz();
 
+
         Construtivo construtivo = new Construtivo(matriz);
 
-        //construtivo.initialiaze();
-
-        List<Integer> result = construtivo.getResult();
-
-        //int multa = construtivo.calculaMulta(result);
-
-        //System.out.println("\nVerificação da multa: "+multa);
+        construtivo.initialiaze();
 
         EstruturasVizinhança estruturasVizinhança = new EstruturasVizinhança(construtivo);
         estruturasVizinhança.busca();
