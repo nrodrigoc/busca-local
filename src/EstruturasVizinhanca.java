@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-public class EstruturasVizinhança {
+public class EstruturasVizinhanca {
 
     private Construtivo construtivo;
 
-    public EstruturasVizinhança(Construtivo construtivo) {
+    public EstruturasVizinhanca(Construtivo construtivo) {
         this.construtivo = construtivo;
     }
 
@@ -14,7 +14,7 @@ public class EstruturasVizinhança {
 
 
         System.out.println("\n\n--------------------------------------");
-        System.out.println("INICIANDO ESTRUTURA DE VIZINHANÇA");
+        System.out.println("INICIANDO ESTRUTURA DE VIZINHANCA");
         System.out.println("--------------------------------------");
 
         int menor_multa = construtivo.getTotalMulta();
@@ -57,12 +57,12 @@ public class EstruturasVizinhança {
         }
 
         System.out.println("\n--------------------------------------");
-        System.out.println("FIM ESTRUTURA DE VIZINHANÇA");
+        System.out.println("FIM ESTRUTURA DE VIZINHANCA");
         System.out.println("--------------------------------------");
 
 
         System.out.println("\nMelhor multa: "+menor_multa);
-        System.out.print("MELHOR SEQUÊNCIA: |");
+        System.out.print("MELHOR SEQUENCIA: |");
         for ( Integer visita : visitas ){
             System.out.print(" " + visita + " |");
         }

@@ -19,9 +19,13 @@ public class Instancia {
 
         int n_de_pedidos = 0;
 
-        File file =  new File(".\\instance\\" + filename);
 
         try {
+            String path = new File(".").getCanonicalPath();
+            path = path.replace("\\", "/");
+
+            File file =  new File( path + "/instance/" + filename);
+
             BufferedReader br = new BufferedReader(new FileReader(file));
 
 

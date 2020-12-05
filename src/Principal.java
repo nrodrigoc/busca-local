@@ -1,23 +1,20 @@
-import java.util.List;
+import java.util.Scanner;
 
 public class Principal {
 
     public static void main(String[] args) {
-        System.out.println("Bom dia");
-
-        String filename = "instance4.data";
+        System.out.println("Enter file name that is in the \"instance\" folder. Ex.in: \"instance1.data\": ");
+        Scanner ler = new Scanner(System.in);
+        String filename = ler.next();
+        ler.close();
 
         Instancia instancia = new Instancia(filename);
 
-        Integer [][] matriz = instancia.getMatriz();
-
-
-        Construtivo construtivo = new Construtivo(matriz);
-
+        Construtivo construtivo = new Construtivo(instancia.getMatriz());
         construtivo.initialiaze();
 
-        EstruturasVizinhança estruturasVizinhança = new EstruturasVizinhança(construtivo);
-        estruturasVizinhança.busca();
+        EstruturasVizinhanca estruturasVizinhanca = new EstruturasVizinhanca(construtivo);
+        estruturasVizinhanca.busca();
 
     }
 

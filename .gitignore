@@ -1,3 +1,7 @@
 .idea
 busca-local.iml
 /out/
+/src/Principal.class
+/src/Instancia.class
+/src/EstruturasVizinhanca.class
+/src/Construtivo.class
