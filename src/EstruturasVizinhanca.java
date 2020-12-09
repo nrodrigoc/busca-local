@@ -39,7 +39,7 @@ public class EstruturasVizinhanca {
                 Collections.swap(aux, 0, i);
 
                 int multa = construtivo.calculaMulta(aux);
-                if(menor_multa > multa){
+                if(menor_multa >= multa){
                     menor_multa = multa;
                     melhor = aux;
                     System.out.println();

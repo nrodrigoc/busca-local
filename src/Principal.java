@@ -13,9 +13,11 @@ public class Principal {
         Construtivo construtivo = new Construtivo(instancia.getMatriz());
         construtivo.initialiaze();
 
-        EstruturasVizinhanca estruturasVizinhanca = new EstruturasVizinhanca(construtivo);
-        estruturasVizinhanca.busca();
+//
+//        EstruturasVizinhanca estruturasVizinhanca = new EstruturasVizinhanca(construtivo);
+//        estruturasVizinhanca.busca();
 
+        System.out.println("\n\nMULTAAAAA: " + construtivo.calculaMulta(construtivo.getVisitas()));
     }
 
 }

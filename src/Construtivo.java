@@ -38,8 +38,9 @@ public class Construtivo {
         System.out.println("INICIANDO ALGORITIMO GULOSO");
         System.out.println("--------------------------------------");
 
+
         // Id do pedido que está sendo processado no momento
-        Integer id_processando = -1;
+        int id_processando = -1;
 
         //Pedidos ainda nao processados
         List<Integer> pendentes = new ArrayList<>();
@@ -94,12 +95,6 @@ public class Construtivo {
 
             // Libera a próxima avaliação de pedidos
             if(emProducao && copia[id_processando][Instancia.DURACAO] == 0) {
-                //Calcula a multa
-                if (contDias - copia[id_processando][Instancia.DATA_ENTREGA] > 0){
-                    Integer diasAtrasados = contDias - copia[id_processando][Instancia.DATA_ENTREGA];
-                    System.out.println("MULTA: " + copia[id_processando][Instancia.MULTA_ATRASO] * diasAtrasados);
-                    totalMulta += copia[id_processando][Instancia.MULTA_ATRASO] * diasAtrasados;
-                }
 
                 emProducao = false;
 
@@ -112,6 +107,8 @@ public class Construtivo {
                 System.out.println();
             }
         }
+
+        totalMulta = calculaMulta(visitas);
 
         System.out.println("--------------------------------------");
         System.out.println("FIM ALGORITIMO GULOSO");
@@ -130,29 +127,39 @@ public class Construtivo {
         int dias = 0;
         int multa = 0;
 
-        // Id o pedido que está sendo processado
-
-        int processados = 0;
+        System.out.println();
         // Indice do pedido processado na matriz
-        int atual = ordem.get(processados) - 1;
-        while (processados < ordem.size() -1) {
+        int indiceAtual = 0;
+
+        int idAtual = ordem.get(indiceAtual)-1;
+        int duracaoAtual = matriz[idAtual][Instancia.DURACAO] - 1;
+        while (true) {
 
             //Verifica se a data mínima de inicio foi atingida
-            if(dias - matriz[atual][Instancia.DATA_MINIMA] >= 0) {
-                dias += matriz[atual][Instancia.DURACAO];
-                processados++;
-                atual = ordem.get(processados) - 1;
+            if(dias >= matriz[idAtual][Instancia.DATA_MINIMA]) {
+//                System.out.print("FINALIZADO: " + (idAtual+1) +
+//                        " | INICIO: " + dias);
+                dias += duracaoAtual;
 
-                int diasAtrasados = matriz[atual][Instancia.DURACAO] + dias - matriz[atual][Instancia.DATA_ENTREGA];
-
+                int diasAtrasados = dias - matriz[idAtual][Instancia.DATA_ENTREGA];
                 // Se houver atraso, soma à multa
-                if(diasAtrasados >= 0) {
-                    multa += diasAtrasados * matriz[atual][Instancia.MULTA_ATRASO];
+                if(diasAtrasados > 0) {
+//                    System.out.print(" | DIAS DE ATRASO: " + diasAtrasados);
+                    multa += diasAtrasados * matriz[idAtual][Instancia.MULTA_ATRASO];
+                }
+                indiceAtual++;
+
+                // Cancela o laço de repetição ao analisar todos os elementos da sequencia
+                if(indiceAtual < ordem.size()) {
+                    idAtual = ordem.get(indiceAtual) - 1;
+                    duracaoAtual = matriz[idAtual][Instancia.DURACAO];
+                }else {
+                    break;
                 }
 
-                continue;
+//                System.out.println(" | DURACAO: " + matriz[idAtual][Instancia.DURACAO] +
+//                        " | FIM: " + dias);
             }
-
             dias++;
         }
 
