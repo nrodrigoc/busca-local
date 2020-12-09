@@ -40,7 +40,7 @@ public class Construtivo {
 
 
         // Id do pedido que está sendo processado no momento
-        int id_processando = -1;
+        Integer id_processando = -1;
 
         //Pedidos ainda nao processados
         List<Integer> pendentes = new ArrayList<>();
@@ -95,6 +95,12 @@ public class Construtivo {
 
             // Libera a próxima avaliação de pedidos
             if(emProducao && copia[id_processando][Instancia.DURACAO] == 0) {
+                //Calcula a multa
+//                if (contDias - copia[id_processando][Instancia.DATA_ENTREGA] > 0){
+//                    Integer diasAtrasados = contDias - copia[id_processando][Instancia.DATA_ENTREGA];
+//                    System.out.println("MULTA: " + copia[id_processando][Instancia.MULTA_ATRASO] * diasAtrasados);
+//                    totalMulta += copia[id_processando][Instancia.MULTA_ATRASO] * diasAtrasados;
+//                }
 
                 emProducao = false;
 
@@ -127,7 +133,6 @@ public class Construtivo {
         int dias = 0;
         int multa = 0;
 
-        System.out.println();
         // Indice do pedido processado na matriz
         int indiceAtual = 0;
 
